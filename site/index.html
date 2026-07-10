@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Demo Bakery — Home</title>
+	<style>
+		body { font-family: sans-serif; margin: 2rem auto; max-width: 40rem; }
+		.hero { background: #fff; color: #bbb; padding: 1rem; } /* low contrast on purpose */
+		.fake-button { background: #eee; padding: 0.5rem 1rem; display: inline-block; cursor: pointer; }
+	</style>
+</head>
+<body>
+	<h1>Demo Bakery</h1>
+	<p class="hero">Freshly baked accessibility violations, every deploy.</p>
+
+	<!-- Image with no alt text -->
+	<img src="bread.jpg" width="200" height="120">
+
+	<!-- Non-semantic clickable div instead of a button -->
+	<div class="fake-button" onclick="alert('ordered!')">Order now</div>
+
+	<!-- Link with no discernible text -->
+	<a href="about.html"></a>
+
+	<p>Visit our <a href="about.html">about page</a> or the <a href="clean.html">accessible page</a>.</p>
+</body>
+</html>
