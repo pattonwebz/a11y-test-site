@@ -48,13 +48,13 @@ jobs:
 
       - name: Scan with axe-core
         id: scan
-        uses: pattonwebz/axe-scan-action@v0.0.1
+        uses: pattonwebz/axe-scan-action@v0.0.2
         with:
           urls-file: urls.txt
 
       - name: Report and enforce threshold
         if: always()
-        uses: pattonwebz/axe-report-action@v0.0.1
+        uses: pattonwebz/axe-report-action@v0.0.2
         with:
           results-file: ${{ steps.scan.outputs.results-file }}
           fail-on: serious

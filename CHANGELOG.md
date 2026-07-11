@@ -2,11 +2,15 @@
 
 Notable changes to this demo site and its scan pipeline.
 
-## Unreleased
+## 2026-07-11
 
 ### Added
 
 - MIT `LICENSE`.
+
+### Changed
+
+- Workflow: axe-scan-action and axe-report-action bumped to v0.0.2 (JSON `urls` input, non-2xx responses fail the scan by default).
 
 ## 2026-07-10
 
