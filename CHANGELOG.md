@@ -2,6 +2,12 @@
 
 Notable changes to this demo site and its scan pipeline.
 
+## 2026-07-11 (later)
+
+### Changed
+
+- Workflow: axe-scan-action bumped to v0.0.3 (opt-in custom rulesets via configure-file + rules filter).
+
 ## 2026-07-11
 
 ### Added

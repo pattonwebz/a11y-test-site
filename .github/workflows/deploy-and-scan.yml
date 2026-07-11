@@ -48,7 +48,7 @@ jobs:
 
       - name: Scan with axe-core
         id: scan
-        uses: pattonwebz/axe-scan-action@v0.0.2
+        uses: pattonwebz/axe-scan-action@v0.0.3
         with:
           urls-file: urls.txt
 
