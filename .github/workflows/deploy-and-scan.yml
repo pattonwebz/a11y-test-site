@@ -71,27 +71,40 @@ jobs:
     needs: deploy
     runs-on: ubuntu-latest
     steps:
-      - name: Load EDAC custom ruleset
-        id: ruleset
-        uses: pattonwebz/accessibility-checker-rules/.github/actions/ruleset@main
+      - name: Check out private rules repo
+        uses: actions/checkout@v4
+        with:
+          repository: pattonwebz/accessibility-checker-rules
+          token: ${{ secrets.RULES_REPO_TOKEN }}
+          path: a11y-rules
+
+      - name: Check out private report action
+        uses: actions/checkout@v4
+        with:
+          repository: pattonwebz/axe-html-report-action
+          token: ${{ secrets.RULES_REPO_TOKEN }}
+          path: report-action
+
+      - name: Read runOnly rule ids
+        id: ids
+        run: echo "rules=$(node -e 'process.stdout.write(JSON.stringify(require("./a11y-rules/dist/rule-ids.json").rules))')" >> "$GITHUB_OUTPUT"
 
       - name: Scan with custom rules
         id: scan
         uses: pattonwebz/axe-scan-action@main
         with:
           urls: '["${{ needs.deploy.outputs.page_url }}", "${{ needs.deploy.outputs.page_url }}about.html", "${{ needs.deploy.outputs.page_url }}clean.html"]'
-          configure-file: ${{ steps.ruleset.outputs.configure-file }}
-          rules: ${{ steps.ruleset.outputs.rules }}
+          configure-file: a11y-rules/dist/edac-rules.axe.js
+          rules: ${{ steps.ids.outputs.rules }}
           output-file: custom-rules-results.json
 
       - name: Render HTML report
         if: always()
-        id: html
-        uses: pattonwebz/axe-html-report-action@main
-        with:
-          results-file: ${{ steps.scan.outputs.results-file }}
-          output-file: custom-rules-report.html
-          title: a11y-test-site — custom ruleset scan
+        env:
+          INPUT_RESULTS-FILE: ${{ steps.scan.outputs.results-file }}
+          INPUT_OUTPUT-FILE: custom-rules-report.html
+          INPUT_TITLE: a11y-test-site — custom ruleset scan
+        run: node report-action/dist/index.js
 
       - name: Upload custom-rules results + report
         if: always()
