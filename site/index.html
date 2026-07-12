@@ -24,5 +24,13 @@
 	<a href="about.html"></a>
 
 	<p>Visit our <a href="about.html">about page</a> or the <a href="clean.html">accessible page</a>.</p>
+
+<!-- Violations only the EDAC custom ruleset detects (no standard axe equivalent) -->
+<section aria-label="Custom rule triggers">
+	<p style="text-align: justify;">This paragraph is deliberately fully justified, which standard axe-core does not flag at all. The custom text_justified rule should report it because justified text creates uneven word spacing that harms readability for dyslexic readers, and this sentence is padded to span several lines.</p>
+	<p style="font-size: 9px;">Deliberately tiny 9px text that only the custom text_small rule flags.</p>
+	<p><u>Deliberately underlined non-link text for the custom underlined_text rule.</u></p>
+	<p><a href="https://example.com/some/page.html">https://example.com/some/page.html</a></p>
+</section>
 </body>
 </html>
