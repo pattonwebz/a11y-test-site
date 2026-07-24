@@ -27,53 +27,62 @@
 
 	<main>
 	<section class="hero">
-		<p class="hero__eyebrow">Baked fresh, broken on purpose</p>
-		<h1>Demo Bakery</h1>
-		<p class="hero__subtitle demo-tagline">Freshly baked accessibility violations, every deploy.</p>
-		<div class="hero__actions">
-			<a class="btn btn--primary" href="#menu">See the menu</a>
-			<a class="btn btn--ghost" href="about.html">How this demo works</a>
+		<div class="wrap">
+			<p class="hero__eyebrow">Baked fresh, broken on purpose</p>
+			<h1>Demo Bakery</h1>
+			<p class="hero__subtitle demo-tagline">Freshly baked accessibility violations, every deploy.</p>
+			<div class="hero__actions">
+				<a class="btn btn--primary" href="#menu">See the menu</a>
+				<a class="btn btn--ghost" href="about.html">How this demo works</a>
+			</div>
 		</div>
 	</section>
 
-	<!-- Image with no alt text (intentional violation, unchanged) -->
-	<img src="bread.jpg" width="200" height="120">
+	<div class="wrap">
+		<!-- Image with no alt text (intentional violation, unchanged; src points at a
+		     real file so it's the missing alt attribute that's the issue, not a 404) -->
+		<img src="assets/bread.svg" width="200" height="120">
 
-	<!-- Non-semantic clickable div instead of a button (intentional violation, unchanged) -->
-	<div class="fake-button" onclick="alert('ordered!')">Order now</div>
+		<!-- Non-semantic clickable div instead of a button (intentional violation, unchanged) -->
+		<div class="fake-button" onclick="alert('ordered!')">Order now</div>
 
-	<!-- Link with no discernible text (intentional violation, unchanged) -->
-	<a href="about.html"></a>
+		<!-- Link with no discernible text (intentional violation, unchanged) -->
+		<a href="about.html"></a>
 
-	<p>Visit our <a href="about.html">about page</a> or the <a href="clean.html">accessible page</a>.</p>
+		<p>Visit our <a href="about.html">about page</a> or the <a href="clean.html">accessible page</a>.</p>
+	</div>
 
 	<section class="menu" id="menu">
-		<h2>Today's bakes</h2>
-		<div class="menu__grid">
-			<article class="menu__card">
-				<p class="menu__card-icon" aria-hidden="true">🥖</p>
-				<h3>Sourdough</h3>
-				<p>Slow-fermented, crusty, and proofed for 18 hours.</p>
-			</article>
-			<article class="menu__card">
-				<p class="menu__card-icon" aria-hidden="true">🥐</p>
-				<h3>Croissants</h3>
-				<p>Laminated, buttery, and gone before 9am.</p>
-			</article>
-			<article class="menu__card">
-				<p class="menu__card-icon" aria-hidden="true">🍪</p>
-				<h3>Cinnamon rolls</h3>
-				<p>Warm, gooey, and worth the queue.</p>
-			</article>
+		<div class="wrap">
+			<h2>Today's bakes</h2>
+			<div class="menu__grid">
+				<article class="menu__card">
+					<p class="menu__card-icon" aria-hidden="true">🥖</p>
+					<h3>Sourdough</h3>
+					<p>Slow-fermented, crusty, and proofed for 18 hours.</p>
+				</article>
+				<article class="menu__card">
+					<p class="menu__card-icon" aria-hidden="true">🥐</p>
+					<h3>Croissants</h3>
+					<p>Laminated, buttery, and gone before 9am.</p>
+				</article>
+				<article class="menu__card">
+					<p class="menu__card-icon" aria-hidden="true">🍪</p>
+					<h3>Cinnamon rolls</h3>
+					<p>Warm, gooey, and worth the queue.</p>
+				</article>
+			</div>
 		</div>
 	</section>
 
 	<!-- Violations only the EDAC custom ruleset detects (no standard axe equivalent) -->
 	<section aria-label="Custom rule triggers">
-		<p style="text-align: justify;">This paragraph is deliberately fully justified, which standard axe-core does not flag at all. The custom text_justified rule should report it because justified text creates uneven word spacing that harms readability for dyslexic readers, and this sentence is padded to span several lines.</p>
-		<p style="font-size: 9px;">Deliberately tiny 9px text that only the custom text_small rule flags.</p>
-		<p><u>Deliberately underlined non-link text for the custom underlined_text rule.</u></p>
-		<p><a href="https://example.com/some/page.html">https://example.com/some/page.html</a></p>
+		<div class="wrap">
+			<p style="text-align: justify;">This paragraph is deliberately fully justified, which standard axe-core does not flag at all. The custom text_justified rule should report it because justified text creates uneven word spacing that harms readability for dyslexic readers, and this sentence is padded to span several lines.</p>
+			<p style="font-size: 9px;">Deliberately tiny 9px text that only the custom text_small rule flags.</p>
+			<p><u>Deliberately underlined non-link text for the custom underlined_text rule.</u></p>
+			<p><a href="https://example.com/some/page.html">https://example.com/some/page.html</a></p>
+		</div>
 	</section>
 	</main>
 

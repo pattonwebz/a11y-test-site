@@ -16,6 +16,7 @@
 	--brown-muted: #6b5842;
 	--terracotta: #9a3412;
 	--terracotta-dark: #7c2d12;
+	--amber: #b45309;
 	--cream-muted: #e8dcc8;
 }
 
@@ -88,27 +89,36 @@ a:hover, a:focus { color: var(--terracotta-dark); }
 	color: var(--terracotta);
 }
 
-/* Hero */
+/* Hero — gradient + a faint grain pattern so it isn't a flat color block.
+   White text verified against both gradient endpoints: 9.37:1 on the dark
+   end (--terracotta-dark), 5.02:1 on the light end (--amber) — both clear
+   AA's 4.5:1, so it holds up wherever the gradient sits. */
 .hero {
 	text-align: center;
-	padding: 64px 24px 48px;
+	padding: 72px 0 56px;
+	background-image:
+		url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCI+CiAgPGNpcmNsZSBjeD0iOCIgY3k9IjgiIHI9IjEuNiIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4xNCIvPgogIDxjaXJjbGUgY3g9IjMyIiBjeT0iMjAiIHI9IjEuMiIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4xMCIvPgogIDxjaXJjbGUgY3g9IjQ2IiBjeT0iNDQiIHI9IjEuOCIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4xMiIvPgogIDxjaXJjbGUgY3g9IjE2IiBjeT0iNDgiIHI9IjEuMSIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4xMCIvPgo8L3N2Zz4K"),
+		linear-gradient(135deg, var(--terracotta-dark) 0%, var(--terracotta) 55%, var(--amber) 100%);
+	background-repeat: repeat, no-repeat;
+	background-size: 60px 60px, cover;
 }
 .hero__eyebrow {
 	text-transform: uppercase;
 	letter-spacing: 0.12em;
 	font-size: 0.8rem;
-	color: var(--terracotta);
+	color: #fff;
 	font-weight: 700;
 	margin: 0 0 12px;
 }
 .hero h1 {
 	font-size: 2.6rem;
 	margin: 0 0 16px;
+	color: #fff;
 }
 .hero__subtitle {
 	max-width: 42ch;
 	margin: 0 auto 28px;
-	color: var(--brown-muted);
+	color: #fff;
 	font-size: 1.1rem;
 }
 .hero__actions {
@@ -138,9 +148,30 @@ a:hover, a:focus { color: var(--terracotta-dark); }
 }
 .btn--ghost:hover, .btn--ghost:focus { background: rgba(154, 52, 18, 0.08); }
 
+/* Both buttons sit on the hero's terracotta/amber gradient now — the
+   default terracotta-on-terracotta styling above would barely register.
+   Inverted to white so they read clearly against that background
+   specifically (white-on-terracotta / terracotta-on-white both verified
+   well past 4.5:1 already, above). */
+.hero .btn--primary {
+	background: #fff;
+	color: var(--terracotta-dark);
+}
+.hero .btn--primary:hover, .hero .btn--primary:focus {
+	background: var(--cream-muted);
+	color: var(--terracotta-dark);
+}
+.hero .btn--ghost {
+	color: #fff;
+	border-color: #fff;
+}
+.hero .btn--ghost:hover, .hero .btn--ghost:focus {
+	background: rgba(255, 255, 255, 0.15);
+}
+
 /* Menu / product cards */
 .menu {
-	padding: 40px 24px 56px;
+	padding: 40px 0 56px;
 }
 .menu h2 {
 	text-align: center;
@@ -175,6 +206,8 @@ a:hover, a:focus { color: var(--terracotta-dark); }
 
 /* Page content wrapper for about/clean */
 .page-content {
+	max-width: 700px;
+	margin: 0 auto;
 	padding: 48px 24px 56px;
 }
 .page-content h1 {
@@ -241,8 +274,9 @@ a:hover, a:focus { color: var(--terracotta-dark); }
 	background: var(--terracotta-dark);
 }
 .site-footer__meta {
-	max-width: 960px;
+	max-width: 640px;
 	margin: 24px auto 0;
+	text-align: center;
 	font-size: 0.85rem;
 	/* was --brown-muted, which only measures 2.42:1 on this dark background —
 	   a real contrast bug caught by a real axe-core scan, not assumed clean. */
