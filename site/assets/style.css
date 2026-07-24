@@ -17,6 +17,7 @@
 	--terracotta: #9a3412;
 	--terracotta-dark: #7c2d12;
 	--amber: #b45309;
+	--amber-soft: #dba56d;
 	--cream-muted: #e8dcc8;
 }
 
@@ -289,4 +290,93 @@ a:hover, a:focus { color: var(--terracotta-dark); }
 @media (max-width: 640px) {
 	.site-footer__inner { grid-template-columns: 1fr; }
 	.hero h1 { font-size: 2rem; }
+}
+
+/* ---- Expanded styles below ---- */
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+	outline: 3px solid var(--terracotta);
+	outline-offset: 3px;
+}
+
+html { scroll-behavior: smooth; }
+
+.page-hero {
+	background: linear-gradient(150deg, #2b1a0c 0%, #4a2c13 55%, #7a4a1f 100%);
+	color: #fff;
+	padding: 3.5rem 2rem;
+	text-align: center;
+}
+
+.page-hero__eyebrow {
+	font-size: 0.8rem;
+	font-weight: 700;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: var(--amber-soft);
+	margin-bottom: 0.75rem;
+}
+
+.page-hero h1 { font-size: 2.4rem; margin-bottom: 0.5rem; }
+
+.page-hero__lede {
+	max-width: 46ch;
+	margin: 0 auto;
+	font-size: 1.05rem;
+	color: #f5e9d8;
+}
+
+.section { padding: 3rem 0; }
+.section__title { font-size: 1.6rem; margin-bottom: 0.25rem; }
+.section__intro { color: #4d3a28; max-width: 62ch; margin-bottom: 1.75rem; }
+
+.price-table {
+	width: 100%;
+	border-collapse: collapse;
+	background: #fff;
+	border-radius: 0.6rem;
+	overflow: hidden;
+	box-shadow: 0 2px 8px rgb(43 26 12 / 8%);
+	margin: 1.5rem 0;
+}
+
+.price-table caption { text-align: left; font-weight: 700; font-size: 1.05rem; padding: 1rem 1.25rem 0.5rem; color: #2b1a0c; }
+.price-table td, .price-table th { padding: 0.85rem 1.25rem; text-align: left; border-bottom: 1px solid #efe3d0; }
+.price-table thead th { background: var(--brown-dark); color: #fff; font-size: 0.78rem; letter-spacing: 0.09em; text-transform: uppercase; }
+.price-table .price { font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+.gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; }
+.gallery-item { position: relative; border-radius: 0.6rem; overflow: hidden; background: var(--brown-dark); aspect-ratio: 4/3; }
+.gallery-item img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 0.25s ease; }
+.gallery-item:hover img { transform: scale(1.04); }
+.gallery-item__caption { position: absolute; inset-inline: 0; bottom: 0; padding: 0.6rem 0.85rem; background: linear-gradient(transparent, rgb(0 0 0 / 72%)); color: #fff; font-size: 0.9rem; }
+
+.events-list { display: grid; gap: 1.25rem; }
+.event-card { display: grid; grid-template-columns: 92px 1fr; gap: 1.25rem; background: #fff; border-radius: 0.75rem; padding: 1.25rem 1.5rem; box-shadow: 0 2px 8px rgb(43 26 12 / 8%); align-items: start; }
+.date-badge { display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: 0.6rem; background: var(--brown-dark); color: #fff; padding: 0.75rem 0.5rem; text-align: center; line-height: 1.1; }
+.date-badge__day { font-size: 1.6rem; font-weight: 700; }
+.date-badge__month { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+.date-badge--faint { background: #f0e6d6; color: #d8c6a6; }
+
+.contact-layout { display: grid; grid-template-columns: 1.4fr 1fr; gap: 2.5rem; align-items: start; }
+.contact-form { display: grid; gap: 1.1rem; background: #fff; padding: 1.75rem; border-radius: 0.75rem; box-shadow: 0 2px 8px rgb(43 26 12 / 8%); }
+.contact-form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
+.contact-form input, .contact-form textarea { width: 100%; padding: 0.7rem 0.85rem; border: 1px solid #d8c6a8; border-radius: 0.45rem; font: inherit; background: #fff; box-sizing: border-box; }
+.contact-form textarea { resize: vertical; min-height: 130px; }
+.contact-form button { justify-self: start; background: var(--terracotta); color: #fff; font-weight: 700; border: none; padding: 0.8rem 1.75rem; border-radius: 0.5rem; cursor: pointer; }
+.contact-form button:hover { background: var(--terracotta-dark); }
+.contact-card { background: #fff; padding: 1.5rem; border-radius: 0.75rem; box-shadow: 0 2px 8px rgb(43 26 12 / 8%); }
+
+.testimonials { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; }
+.testimonial { background: #fff; border-radius: 0.75rem; padding: 1.5rem; box-shadow: 0 2px 8px rgb(43 26 12 / 8%); border-top: 4px solid var(--amber-soft); }
+.testimonial blockquote { margin: 0 0 1rem; font-size: 1.05rem; line-height: 1.55; }
+.testimonial cite { font-style: normal; font-weight: 700; color: #6b5236; }
+
+@media (max-width: 720px) {
+	.contact-layout, .contact-form__row { grid-template-columns: 1fr; }
+	.event-card { grid-template-columns: 1fr; }
+	.date-badge { flex-direction: row; gap: 0.5rem; justify-content: flex-start; padding: 0.5rem 1rem; }
 }

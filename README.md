@@ -9,7 +9,7 @@ CI/CD. On every push it deploys to GitHub Pages and is then scanned live by
 **The workflow is expected to fail.** That's the demo: the report enforces `fail-on: serious`
 against pages that contain intentional violations.
 
-All three pages share a real product-site look (`site/assets/style.css`): a nav bar, a hero
+All seven pages share a real product-site look (`site/assets/style.css`): a nav bar, a hero
 section, a menu/feature grid, and a footer with a working newsletter signup form — so the
 intentional violations sit inside a page that actually looks like something worth scanning,
 rather than bare unstyled markup. That chrome is itself real, tested code: verified with a real
@@ -20,9 +20,13 @@ CSS was fine. `clean.html` is re-verified at 0 violations after every change to 
 since that's its entire job.
 
 | Page | Intentional issues |
-|---|---|
+|---|---|---|
 | `index.html` | Image without alt text, low-contrast text, clickable `div`, link with no text |
 | `about.html` | Missing `lang` attribute, skipped heading level, unlabeled form inputs (note: axe's automated `label` rule does not flag the unlabeled inputs — `placeholder` text satisfies the accessible-name computation even though it disappears on focus; this is a real, documented limit of automated scanning, not a bug in this demo) |
+| `menu.html` | Table without `scope` on `th`, empty `th` (empty-table-header), decorative SVG icon with `aria-hidden` instead of accessible name, dead link (`href=""`), low-contrast promo banner text |
+| `gallery.html` | Gallery images with no `alt` attribute (image-alt), SVG icon with `role="presentation"` that conveys meaning, `tabindex="3"` on non-interactive element, `role="img"` without `aria-label`, empty link wrapping content |
+| `events.html` | Heading level skip (h2→h5), non-semantic list (div-based), `<p>` styled to look like a heading, low-contrast `date-badge--faint` |
+| `contact.html` | Duplicate `id` attribute on two inputs, submit button with no text content, textarea without associated `<label>`, mislabeled team photo (decorative `alt=""` on informative image) |
 | `clean.html` | None — exists to show a passing row in the report |
 
 ## Running locally (no CI cost)

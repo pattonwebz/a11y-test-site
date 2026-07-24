@@ -43,6 +43,10 @@ jobs:
           printf '%s\n' \
             "$base" \
             "${base}about.html" \
+            "${base}menu.html" \
+            "${base}gallery.html" \
+            "${base}events.html" \
+            "${base}contact.html" \
             "${base}clean.html" > urls.txt
           cat urls.txt
 
@@ -60,9 +64,25 @@ jobs:
           fail-on: serious
           show-personas: true
 
+      - name: Render HTML report
+        if: always()
+        id: html
+        uses: pattonwebz/axe-html-report-action@v0.0.2
+        with:
+          results-file: ${{ steps.scan.outputs.results-file }}
+          output-file: axe-report.html
+          title: Demo Bakery accessibility report
+
       - name: Upload raw results
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: axe-results
           path: ${{ steps.scan.outputs.results-file }}
+
+      - name: Upload HTML report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: accessibility-report
+          path: ${{ steps.html.outputs.report-file }}

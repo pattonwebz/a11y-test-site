@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Demo Bakery — Menu</title>
+	<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+	<nav class="site-nav" aria-label="Primary">
+		<div class="site-nav__inner">
+			<a class="site-nav__logo" href="index.html">🍞 Demo Bakery</a>
+			<ul class="site-nav__links">
+				<li><a href="index.html">Home</a></li>
+				<li><a href="menu.html" aria-current="page">Menu</a></li>
+				<li><a href="gallery.html">Gallery</a></li>
+				<li><a href="events.html">Events</a></li>
+				<li><a href="about.html">About</a></li>
+				<li><a href="contact.html">Contact</a></li>
+				<li><a href="clean.html">The Accessible Page</a></li>
+			</ul>
+		</div>
+	</nav>
+
+	<section class="page-hero" style="background-image: url('https://images.unsplash.com/photo-1549937334-94cef79a5fe6?w=1200&q=80');">
+		<p class="page-hero__eyebrow">Fresh daily, baked since 2026</p>
+		<h1>Our menu</h1>
+		<p class="page-hero__lede">Everything made from scratch with locally sourced ingredients. Prices include tax.</p>
+	</section>
+
+	<main>
+		<div class="wrap">
+			<section class="section">
+				<h2 class="section__title">Breads</h2>
+				<p class="section__intro">Long-fermented, hand-shaped, baked on stone.</p>
+
+				<!-- INTENTIONAL VIOLATION: table with no caption element, th has no scope -->
+				<table class="price-table">
+					<thead>
+						<tr>
+							<th>Item</th>
+							<th></th>
+							<!-- INTENTIONAL VIOLATION: empty th -- axe empty-table-header -->
+							<th>Price</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Sourdough loaf</td>
+							<td><span class="badge"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12"><circle cx="6" cy="6" r="5" fill="#c98a3e"/></svg> vegan</span></td>
+							<td class="price">$6.50</td>
+						</tr>
+						<tr>
+							<td>Ciabatta</td>
+							<td><span class="badge"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12"><circle cx="6" cy="6" r="5" fill="#c98a3e"/></svg> vegan</span></td>
+							<td class="price">$5.00</td>
+						</tr>
+						<tr>
+							<td>Brioche</td>
+							<td><span class="badge">🐄 dairy</span></td>
+							<td class="price">$7.25</td>
+						</tr>
+						<tr>
+							<td>Focaccia (rosemary & sea salt)</td>
+							<td><span class="badge"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12"><circle cx="6" cy="6" r="5" fill="#c98a3e"/></svg> vegan</span></td>
+							<td class="price">$5.50</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<!-- INTENTIONAL VIOLATION: SVG inside badge has aria-hidden="true" instead of an accessible label.
+				     The SVG conveys the meaning "this item is vegan" — role="img" with an aria-label would be correct.
+				     Using aria-hidden="true" hides it from AT, so screen reader users miss the dietary info. -->
+
+				<h2 class="section__title">Pastries</h2>
+				<p class="section__intro">Baked fresh each morning before the doors open.</p>
+
+				<table class="price-table">
+					<thead>
+						<tr>
+							<th>Item</th>
+							<th>Dietary</th>
+							<th>Price</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Butter croissant</td>
+							<td><span class="badge">🐄 dairy</span></td>
+							<td class="price">$4.50</td>
+						</tr>
+						<tr>
+							<td>Pain au chocolat</td>
+							<td><span class="badge">🐄 dairy</span></td>
+							<td class="price">$5.00</td>
+						</tr>
+						<tr>
+							<td>Cinnamon roll</td>
+							<td><span class="badge">🐄 dairy</span></td>
+							<td class="price">$5.50</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<h2 class="section__title">Drinks</h2>
+				<p class="section__intro">Locally roasted coffee, house-made syrups.</p>
+
+				<!-- INTENTIONAL VIOLATION: low-contrast "promo" banner text color -->
+				<div class="special-banner">☕ Add any pastry for $3 more when ordered with a drink!</div>
+
+				<table class="price-table">
+					<thead>
+						<tr>
+							<th>Item</th>
+							<th>Size</th>
+							<th>Price</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Drip coffee</td>
+							<td>12oz / 16oz</td>
+							<td class="price">$3.00 / $3.75</td>
+						</tr>
+						<tr>
+							<td>Latte</td>
+							<td>12oz / 16oz</td>
+							<td class="price">$4.50 / $5.25</td>
+						</tr>
+						<tr>
+							<td>Cold brew</td>
+							<td>12oz / 16oz</td>
+							<td class="price">$4.00 / $4.75</td>
+						</tr>
+						<tr>
+							<td>Chai latte</td>
+							<td>12oz / 16oz</td>
+							<td class="price">$4.75 / $5.50</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<!-- INTENTIONAL VIOLATION: dead link -->
+				<p style="margin-top: 1.5rem;">Check out our <a href="">daily special</a> board for seasonal items.</p>
+
+			</section>
+		</div>
+	</main>
+
+	<footer class="site-footer">
+		<div class="site-footer__inner">
+			<div>
+				<h2>Get fresh-bake alerts</h2>
+				<p>One email a week when something new comes out of the oven. No spam, just bread.</p>
+				<form class="newsletter-form" action="#" method="post">
+					<div class="field">
+						<label for="newsletter-email">Email address</label>
+						<input id="newsletter-email" type="email" name="email" autocomplete="email">
+					</div>
+					<button type="submit">Subscribe</button>
+				</form>
+			</div>
+			<div>
+				<h2>About this site</h2>
+				<p>A deliberately half-broken static demo used to show accessibility scanning in CI/CD. See the <a href="https://github.com/pattonwebz/a11y-test-site">source on GitHub</a> for what's intentionally broken and why.</p>
+			</div>
+		</div>
+		<p class="site-footer__meta">Demo Bakery isn't a real bakery. This site exists to be scanned, not to sell bread.</p>
+	</footer>
+</body>
+</html>
