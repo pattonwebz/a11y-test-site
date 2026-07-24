@@ -4,6 +4,15 @@ Notable changes to this demo site and its scan pipeline.
 
 ## 2026-07-24
 
+### Removed
+
+- The `custom-rules` job (EDAC custom ruleset scan via the private `accessibility-checker-rules`
+  and `axe-html-report-action` repos). It was a curiosity experiment to see if a custom ruleset
+  was feasible in this pipeline — confirmed it was, but the site's actual scan pipeline goes back
+  to vanilla standard axe-core only, via the `accessibility` job. The `index.html` "Custom rule
+  triggers" section (justified text, tiny text, underlined non-link text) is left in place but is
+  now inert — nothing in this workflow checks it anymore.
+
 ### Added
 
 - Shared site chrome (`site/assets/style.css`): nav bar, hero section, a menu/feature grid on
