@@ -1,0 +1,14 @@
+{
+  "name": "a11y-test-site",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Local, no-cost runner for the same axe-scan-action / axe-report-action pipeline the deploy-and-scan workflow uses in CI.",
+  "type": "module",
+  "scripts": {
+    "demo:local": "node ./scripts/run-locally.mjs"
+  },
+  "devDependencies": {
+    "axe-report-action": "github:pattonwebz/axe-report-action#v0.0.3",
+    "axe-scan-action": "github:pattonwebz/axe-scan-action#v0.0.3"
+  }
+}

@@ -24,3 +24,19 @@ since that's its entire job.
 | `index.html` | Image without alt text, low-contrast text, clickable `div`, link with no text |
 | `about.html` | Missing `lang` attribute, skipped heading level, unlabeled form inputs (note: axe's automated `label` rule does not flag the unlabeled inputs — `placeholder` text satisfies the accessible-name computation even though it disappears on focus; this is a real, documented limit of automated scanning, not a bug in this demo) |
 | `clean.html` | None — exists to show a passing row in the report |
+
+## Running locally (no CI cost)
+
+```bash
+npm install
+npm run demo:local
+```
+
+This serves `site/` on `http://127.0.0.1:8899/` and runs the *actual* axe-scan-action and
+axe-report-action code (both installed as normal git devDependencies, pinned to the same tags
+the workflow uses) as plain Node scripts driven by `INPUT_*` env vars — exactly how the GitHub
+Actions runner invokes them. No GitHub Actions runtime, no CI minutes, same report as CI produces.
+
+Writes `artifacts/axe-results.json` and `artifacts/a11y-summary.md`. Override the port with
+`PORT=8898 npm run demo:local` if 8899 is taken, or `FAIL_ON=none npm run demo:local` /
+`SHOW_PERSONAS=false npm run demo:local` to change thresholds without touching the workflow file.

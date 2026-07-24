@@ -4,6 +4,14 @@ Notable changes to this demo site and its scan pipeline.
 
 ## 2026-07-24
 
+### Added (local runner)
+
+- `package.json` + `scripts/run-locally.mjs`: a no-cost local equivalent of the `accessibility`
+  job. Serves `site/` on `127.0.0.1` instead of a real Pages deploy, then runs the actual
+  axe-scan-action and axe-report-action code (git devDependencies, pinned to the same tags the
+  workflow uses) as plain Node scripts via `INPUT_*` env vars — same code path as CI, no GitHub
+  Actions runtime. `npm install && npm run demo:local`.
+
 ### Removed
 
 - The `custom-rules` job (EDAC custom ruleset scan via the private `accessibility-checker-rules`
