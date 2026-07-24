@@ -19,12 +19,16 @@ Notable changes to this demo site and its scan pipeline.
   `index.html`, and a footer with a working newsletter signup form across all three pages — so
   the site looks like a real product page instead of bare unstyled markup. All new chrome is
   itself intentionally clean; every pre-existing intentional violation is untouched.
-- `scripts/persona-report.mjs`, run as a new `accessibility` job step straight after the scan.
-  Reads the raw axe-core results and appends a "Personas: who these findings affect" section to
-  the job summary — each violated rule mapped to the real GOV.UK / GDS accessibility personas
-  it affects (Ashleigh, Claudia, Christopher, Pawel, Ron, Saleem, Simone), not just a disability
-  category. Mirrors the same persona registry used in the WordPress demo stack's report
-  generator, so both demos hand off findings to named people the same way.
+
+### Changed
+
+- Bumped `axe-report-action` to v0.0.3 and set `show-personas: true` on the report step — the
+  job summary now includes a "Personas: who these findings affect" section, mapping each
+  violated rule to the real GOV.UK / GDS accessibility personas it affects (Ashleigh, Claudia,
+  Christopher, Pawel, Ron, Saleem, Simone), not just a disability category. This replaces
+  `scripts/persona-report.mjs`, a repo-local script added and then removed the same day: persona
+  mapping belongs in the report action itself so every site using it gets it, not duplicated
+  per demo repo.
 
 ### Fixed
 
