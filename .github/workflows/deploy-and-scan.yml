@@ -37,6 +37,8 @@ jobs:
     needs: deploy
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+
       - name: Build URL list from the deployed base URL
         run: |
           base="${{ needs.deploy.outputs.page_url }}"
@@ -51,6 +53,16 @@ jobs:
         uses: pattonwebz/axe-scan-action@v0.0.3
         with:
           urls-file: urls.txt
+
+      - name: Set up Node
+        if: always()
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Persona-mapped accessibility summary
+        if: always()
+        run: node scripts/persona-report.mjs "${{ steps.scan.outputs.results-file }}"
 
       - name: Report and enforce threshold
         if: always()
