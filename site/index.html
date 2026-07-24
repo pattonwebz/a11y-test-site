@@ -4,33 +4,98 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Demo Bakery — Home</title>
+	<link rel="stylesheet" href="assets/style.css">
 	<style>
-		body { font-family: sans-serif; margin: 2rem auto; max-width: 40rem; }
-		.hero { background: #fff; color: #bbb; padding: 1rem; } /* low contrast on purpose */
+		/* Intentional violation, unchanged: low-contrast text (renamed class
+		   only, to avoid colliding with the new .hero section below — same
+		   #fff/#bbb colors, same violation). */
+		.demo-tagline { background: #fff; color: #bbb; padding: 1rem; }
 		.fake-button { background: #eee; padding: 0.5rem 1rem; display: inline-block; cursor: pointer; }
 	</style>
 </head>
 <body>
-	<h1>Demo Bakery</h1>
-	<p class="hero">Freshly baked accessibility violations, every deploy.</p>
+	<nav class="site-nav" aria-label="Primary">
+		<div class="site-nav__inner">
+			<a class="site-nav__logo" href="index.html">🍞 Demo Bakery</a>
+			<ul class="site-nav__links">
+				<li><a href="index.html" aria-current="page">Home</a></li>
+				<li><a href="about.html">About</a></li>
+				<li><a href="clean.html">The Accessible Page</a></li>
+			</ul>
+		</div>
+	</nav>
 
-	<!-- Image with no alt text -->
+	<main>
+	<section class="hero">
+		<p class="hero__eyebrow">Baked fresh, broken on purpose</p>
+		<h1>Demo Bakery</h1>
+		<p class="hero__subtitle demo-tagline">Freshly baked accessibility violations, every deploy.</p>
+		<div class="hero__actions">
+			<a class="btn btn--primary" href="#menu">See the menu</a>
+			<a class="btn btn--ghost" href="about.html">How this demo works</a>
+		</div>
+	</section>
+
+	<!-- Image with no alt text (intentional violation, unchanged) -->
 	<img src="bread.jpg" width="200" height="120">
 
-	<!-- Non-semantic clickable div instead of a button -->
+	<!-- Non-semantic clickable div instead of a button (intentional violation, unchanged) -->
 	<div class="fake-button" onclick="alert('ordered!')">Order now</div>
 
-	<!-- Link with no discernible text -->
+	<!-- Link with no discernible text (intentional violation, unchanged) -->
 	<a href="about.html"></a>
 
 	<p>Visit our <a href="about.html">about page</a> or the <a href="clean.html">accessible page</a>.</p>
 
-<!-- Violations only the EDAC custom ruleset detects (no standard axe equivalent) -->
-<section aria-label="Custom rule triggers">
-	<p style="text-align: justify;">This paragraph is deliberately fully justified, which standard axe-core does not flag at all. The custom text_justified rule should report it because justified text creates uneven word spacing that harms readability for dyslexic readers, and this sentence is padded to span several lines.</p>
-	<p style="font-size: 9px;">Deliberately tiny 9px text that only the custom text_small rule flags.</p>
-	<p><u>Deliberately underlined non-link text for the custom underlined_text rule.</u></p>
-	<p><a href="https://example.com/some/page.html">https://example.com/some/page.html</a></p>
-</section>
+	<section class="menu" id="menu">
+		<h2>Today's bakes</h2>
+		<div class="menu__grid">
+			<article class="menu__card">
+				<p class="menu__card-icon" aria-hidden="true">🥖</p>
+				<h3>Sourdough</h3>
+				<p>Slow-fermented, crusty, and proofed for 18 hours.</p>
+			</article>
+			<article class="menu__card">
+				<p class="menu__card-icon" aria-hidden="true">🥐</p>
+				<h3>Croissants</h3>
+				<p>Laminated, buttery, and gone before 9am.</p>
+			</article>
+			<article class="menu__card">
+				<p class="menu__card-icon" aria-hidden="true">🍪</p>
+				<h3>Cinnamon rolls</h3>
+				<p>Warm, gooey, and worth the queue.</p>
+			</article>
+		</div>
+	</section>
+
+	<!-- Violations only the EDAC custom ruleset detects (no standard axe equivalent) -->
+	<section aria-label="Custom rule triggers">
+		<p style="text-align: justify;">This paragraph is deliberately fully justified, which standard axe-core does not flag at all. The custom text_justified rule should report it because justified text creates uneven word spacing that harms readability for dyslexic readers, and this sentence is padded to span several lines.</p>
+		<p style="font-size: 9px;">Deliberately tiny 9px text that only the custom text_small rule flags.</p>
+		<p><u>Deliberately underlined non-link text for the custom underlined_text rule.</u></p>
+		<p><a href="https://example.com/some/page.html">https://example.com/some/page.html</a></p>
+	</section>
+	</main>
+
+	<footer class="site-footer">
+		<div class="site-footer__inner">
+			<div>
+				<h2>Get fresh-bake alerts</h2>
+				<p>One email a week when something new comes out of the oven. No spam, just bread.</p>
+				<form class="newsletter-form" action="#" method="post">
+					<div class="field">
+						<label for="newsletter-email">Email address</label>
+						<input id="newsletter-email" type="email" name="email" autocomplete="email">
+					</div>
+					<button type="submit">Subscribe</button>
+				</form>
+			</div>
+			<div>
+				<h2>About this site</h2>
+				<p>A deliberately half-broken static demo used to show accessibility scanning in CI/CD. See the <a href="https://github.com/pattonwebz/a11y-test-site">source on GitHub</a> for what's intentionally broken and why.</p>
+			</div>
+		</div>
+		<p class="site-footer__meta">Demo Bakery isn't a real bakery. This site exists to be scanned, not to sell bread.</p>
+	</footer>
 </body>
 </html>

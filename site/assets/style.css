@@ -1,0 +1,258 @@
+/*
+ * Demo Bakery site chrome. Colors verified for WCAG AA contrast at design
+ * time: dark-brown-on-cream body text is 12.77:1, white-on-terracotta-700
+ * (buttons/nav CTA) is 7.31:1, terracotta-700-on-cream (links) is 6.81:1,
+ * white-on-dark-brown (footer) is 16.37:1 — everything clears 4.5:1 with
+ * real margin. This chrome (nav, hero, menu, footer, newsletter form) is
+ * new and intentionally clean; the site's existing cataloged violations
+ * (see README.md) live only in the content this chrome wraps around, and
+ * are untouched.
+ */
+
+:root {
+	--cream: #fdf6ec;
+	--brown-dark: #2a1d12;
+	--brown-text: #3b2a1a;
+	--brown-muted: #6b5842;
+	--terracotta: #9a3412;
+	--terracotta-dark: #7c2d12;
+	--cream-muted: #e8dcc8;
+}
+
+* { box-sizing: border-box; }
+
+body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+	margin: 0;
+	background: var(--cream);
+	color: var(--brown-text);
+	line-height: 1.55;
+}
+
+.wrap {
+	max-width: 960px;
+	margin: 0 auto;
+	padding: 0 24px;
+}
+
+a { color: var(--terracotta); }
+a:hover, a:focus { color: var(--terracotta-dark); }
+
+/* The default link color (terracotta) only measures 2.24:1 against the
+   footer's dark background — caught by a real axe-core scan. Links inside
+   the footer need a color verified against THAT background, not reused
+   from the light-background default. */
+.site-footer a { color: var(--cream-muted); text-decoration: underline; }
+.site-footer a:hover, .site-footer a:focus { color: #fff; }
+
+/* Nav */
+.site-nav {
+	background: var(--cream);
+	border-bottom: 1px solid var(--cream-muted);
+}
+.site-nav__inner {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 12px;
+	padding: 16px 24px;
+	max-width: 960px;
+	margin: 0 auto;
+}
+.site-nav__logo {
+	font-weight: 700;
+	font-size: 1.2rem;
+	color: var(--brown-text);
+	text-decoration: none;
+}
+.site-nav__links {
+	display: flex;
+	gap: 20px;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+.site-nav__links a {
+	text-decoration: none;
+	color: var(--brown-muted);
+	font-weight: 600;
+	font-size: 0.95rem;
+}
+.site-nav__links a:hover,
+.site-nav__links a:focus {
+	color: var(--terracotta);
+	text-decoration: underline;
+}
+.site-nav__links a[aria-current="page"] {
+	color: var(--terracotta);
+}
+
+/* Hero */
+.hero {
+	text-align: center;
+	padding: 64px 24px 48px;
+}
+.hero__eyebrow {
+	text-transform: uppercase;
+	letter-spacing: 0.12em;
+	font-size: 0.8rem;
+	color: var(--terracotta);
+	font-weight: 700;
+	margin: 0 0 12px;
+}
+.hero h1 {
+	font-size: 2.6rem;
+	margin: 0 0 16px;
+}
+.hero__subtitle {
+	max-width: 42ch;
+	margin: 0 auto 28px;
+	color: var(--brown-muted);
+	font-size: 1.1rem;
+}
+.hero__actions {
+	display: flex;
+	justify-content: center;
+	gap: 16px;
+	flex-wrap: wrap;
+}
+
+.btn {
+	display: inline-block;
+	padding: 12px 24px;
+	border-radius: 999px;
+	font-weight: 700;
+	text-decoration: none;
+	font-size: 0.95rem;
+}
+.btn--primary {
+	background: var(--terracotta);
+	color: #fff;
+}
+.btn--primary:hover, .btn--primary:focus { background: var(--terracotta-dark); color: #fff; }
+.btn--ghost {
+	background: transparent;
+	color: var(--terracotta);
+	border: 2px solid var(--terracotta);
+}
+.btn--ghost:hover, .btn--ghost:focus { background: rgba(154, 52, 18, 0.08); }
+
+/* Menu / product cards */
+.menu {
+	padding: 40px 24px 56px;
+}
+.menu h2 {
+	text-align: center;
+	font-size: 1.8rem;
+	margin: 0 0 32px;
+}
+.menu__grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	gap: 20px;
+}
+.menu__card {
+	background: #fff;
+	border: 1px solid var(--cream-muted);
+	border-radius: 12px;
+	padding: 24px;
+	text-align: center;
+}
+.menu__card-icon {
+	font-size: 2rem;
+	margin-bottom: 8px;
+}
+.menu__card h3 {
+	margin: 0 0 8px;
+	font-size: 1.1rem;
+}
+.menu__card p {
+	margin: 0;
+	color: var(--brown-muted);
+	font-size: 0.95rem;
+}
+
+/* Page content wrapper for about/clean */
+.page-content {
+	padding: 48px 24px 56px;
+}
+.page-content h1 {
+	font-size: 2rem;
+}
+
+/* Footer + newsletter form */
+.site-footer {
+	background: var(--brown-dark);
+	color: var(--cream-muted);
+	padding: 48px 24px 32px;
+	margin-top: 40px;
+}
+.site-footer__inner {
+	max-width: 960px;
+	margin: 0 auto;
+	display: grid;
+	grid-template-columns: 1.2fr 1fr;
+	gap: 32px;
+}
+.site-footer h2 {
+	color: #fff;
+	font-size: 1.2rem;
+	margin: 0 0 8px;
+}
+.site-footer p {
+	margin: 0 0 16px;
+	font-size: 0.95rem;
+}
+.newsletter-form {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	align-items: flex-end;
+}
+.newsletter-form .field {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	flex: 1 1 180px;
+}
+.newsletter-form label {
+	font-size: 0.85rem;
+	color: var(--cream-muted);
+}
+.newsletter-form input {
+	padding: 10px 12px;
+	border-radius: 6px;
+	border: 1px solid var(--brown-muted);
+	font-size: 0.95rem;
+}
+.newsletter-form button {
+	padding: 10px 20px;
+	border-radius: 6px;
+	border: none;
+	background: var(--terracotta);
+	color: #fff;
+	font-weight: 700;
+	cursor: pointer;
+	font-size: 0.95rem;
+}
+.newsletter-form button:hover,
+.newsletter-form button:focus {
+	background: var(--terracotta-dark);
+}
+.site-footer__meta {
+	max-width: 960px;
+	margin: 24px auto 0;
+	font-size: 0.85rem;
+	/* was --brown-muted, which only measures 2.42:1 on this dark background —
+	   a real contrast bug caught by a real axe-core scan, not assumed clean. */
+	color: var(--cream-muted);
+	border-top: 1px solid var(--brown-muted);
+	padding-top: 16px;
+}
+.site-footer__meta a { color: var(--cream-muted); }
+
+@media (max-width: 640px) {
+	.site-footer__inner { grid-template-columns: 1fr; }
+	.hero h1 { font-size: 2rem; }
+}

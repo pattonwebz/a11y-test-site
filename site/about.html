@@ -5,24 +5,56 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Demo Bakery — About</title>
-	<style>
-		body { font-family: sans-serif; margin: 2rem auto; max-width: 40rem; }
-	</style>
+	<link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-	<h1>About us</h1>
-	<!-- Skipped heading level: h1 -> h4 -->
-	<h4>Our story</h4>
-	<p>We have been baking broken markup since 2026.</p>
+	<nav class="site-nav" aria-label="Primary">
+		<div class="site-nav__inner">
+			<a class="site-nav__logo" href="index.html">🍞 Demo Bakery</a>
+			<ul class="site-nav__links">
+				<li><a href="index.html">Home</a></li>
+				<li><a href="about.html" aria-current="page">About</a></li>
+				<li><a href="clean.html">The Accessible Page</a></li>
+			</ul>
+		</div>
+	</nav>
 
-	<h4>Contact form</h4>
-	<form>
-		<!-- Inputs with no labels -->
-		<input type="text" placeholder="Name">
-		<input type="email" placeholder="Email">
-		<button type="submit">Send</button>
-	</form>
+	<main class="page-content">
+		<h1>About us</h1>
+		<!-- Skipped heading level: h1 -> h4 (intentional violation, unchanged) -->
+		<h4>Our story</h4>
+		<p>We have been baking broken markup since 2026.</p>
 
-	<p><a href="index.html">Back home</a></p>
+		<h4>Contact form</h4>
+		<form>
+			<!-- Inputs with no labels (intentional violation, unchanged) -->
+			<input type="text" placeholder="Name">
+			<input type="email" placeholder="Email">
+			<button type="submit">Send</button>
+		</form>
+
+		<p><a href="index.html">Back home</a></p>
+	</main>
+
+	<footer class="site-footer">
+		<div class="site-footer__inner">
+			<div>
+				<h2>Get fresh-bake alerts</h2>
+				<p>One email a week when something new comes out of the oven. No spam, just bread.</p>
+				<form class="newsletter-form" action="#" method="post">
+					<div class="field">
+						<label for="newsletter-email">Email address</label>
+						<input id="newsletter-email" type="email" name="email" autocomplete="email">
+					</div>
+					<button type="submit">Subscribe</button>
+				</form>
+			</div>
+			<div>
+				<h2>About this site</h2>
+				<p>A deliberately half-broken static demo used to show accessibility scanning in CI/CD. See the <a href="https://github.com/pattonwebz/a11y-test-site">source on GitHub</a> for what's intentionally broken and why.</p>
+			</div>
+		</div>
+		<p class="site-footer__meta">Demo Bakery isn't a real bakery. This site exists to be scanned, not to sell bread.</p>
+	</footer>
 </body>
 </html>
